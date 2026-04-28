@@ -125,6 +125,7 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 RAZORPAY_KEY = "rzp_test_Sinc7UPMKWMqp5"
 RAZORPAY_SECRET = "02s8ENn59Cm33AZtd8HnPKZa"
+SECRET_KEY="20*ho-ow2eaxzhxp+g2c8%$lnpgz-i-xr36=ylwy%sf&am$51g"
 
 import os
 
