@@ -125,3 +125,14 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 RAZORPAY_KEY = "rzp_test_Sinc7UPMKWMqp5"
 RAZORPAY_SECRET = "02s8ENn59Cm33AZtd8HnPKZa"
+
+import os
+
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-temp-key")
+
+ALLOWED_HOSTS = ['*']
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+RAZORPAY_KEY = os.environ.get("RAZORPAY_KEY")
+RAZORPAY_SECRET = os.environ.get("RAZORPAY_SECRET")
