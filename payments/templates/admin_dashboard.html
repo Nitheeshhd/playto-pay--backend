@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    margin:0;
+    font-family:Arial;
+    background:#0f172a;
+    color:white;
+}
+
+/* HEADER */
+.header {
+    background:#1e293b;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* CONTAINER */
+.container {
+    padding:20px;
+}
+
+/* CARDS */
+.card {
+    background:#1e293b;
+    padding:20px;
+    margin:15px;
+    border-radius:10px;
+    display:inline-block;
+    width:250px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+.value {
+    font-size:28px;
+    margin-top:10px;
+    color:#38bdf8;
+}
+
+/* CHART */
+.chart-box {
+    background:#1e293b;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+}
+
+/* HOVER EFFECT */
+.card:hover {
+    transform:scale(1.05);
+    transition:0.3s;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h2>📊 Admin Dashboard</h2>
+    <div>Admin Panel</div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="card">
+        <h3>Total Users</h3>
+        <div class="value">{{ users }}</div>
+    </div>
+
+    <div class="card">
+        <h3>Total Transactions</h3>
+        <div class="value">{{ transactions }}</div>
+    </div>
+
+    <div class="card">
+        <h3>Total Amount</h3>
+        <div class="value">₹{{ amount }}</div>
+    </div>
+
+    <div class="chart-box">
+        <canvas id="chart"></canvas>
+    </div>
+
+</div>
+
+<script>
+// ✅ SAFE DJANGO DATA
+const users = parseInt("{{ users|default:0 }}");
+const transactions = parseInt("{{ transactions|default:0 }}");
+
+// ✅ CHART
+new Chart(document.getElementById("chart"), {
+    type: 'bar',
+    data: {
+        labels: ["Users", "Transactions"],
+        datasets: [{
+            label: 'System Stats',
+            data: [users, transactions],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                labels: { color: "white" }
+            }
+        },
+        scales: {
+            x: {
+                ticks: { color: "white" }
+            },
+            y: {
+                ticks: { color: "white" }
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

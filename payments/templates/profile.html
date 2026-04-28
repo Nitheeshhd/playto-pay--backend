@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Profile</title>
+
+<style>
+body {
+    font-family: Arial;
+    background:#f5f7fb;
+}
+
+.card {
+    width:400px;
+    margin:100px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>👤 Profile</h2>
+
+    <p><b>Username:</b> {{ request.user.username }}</p>
+
+    <p><b>Email:</b> {{ request.user.email|default:"Not added" }}</p>
+
+    <a href="/api/dashboard/">⬅ Back to Dashboard</a>
+</div>
+
+</body>
+</html>

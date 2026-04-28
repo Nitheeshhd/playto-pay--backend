@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Credit Money</title>
+</head>
+<body>
+
+<h2>Credit Money</h2>
+
+<form id="creditForm">
+    User ID: <input type="text" id="user_id"><br><br>
+    Amount: <input type="number" id="amount"><br><br>
+    <button type="submit">Credit</button>
+</form>
+
+<p id="result"></p>
+
+<script>
+document.getElementById("creditForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    fetch("/api/credit/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            user_id: document.getElementById("user_id").value,
+            amount: document.getElementById("amount").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("result").innerText = JSON.stringify(data);
+    });
+});
+</script>
+
+</body>
+</html>

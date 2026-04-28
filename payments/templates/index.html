@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PlayTo Dashboard</title>
+</head>
+<body>
+
+<h2>Credit Money</h2>
+
+<input type="text" id="user" placeholder="User ID">
+<input type="number" id="amount" placeholder="Amount">
+<button onclick="credit()">Credit</button>
+
+<p id="result"></p>
+
+<script>
+function credit() {
+    fetch("http://127.0.0.1:8000/api/credit/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            user_id: document.getElementById("user").value,
+            amount: document.getElementById("amount").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("result").innerText = data.message;
+    });
+}
+</script>
+
+</body>
+</html>
